@@ -82,24 +82,24 @@ import User from "../models/User.js";
 // }
 
 
-// export const authVerify = async (req, res, next) => {
-//     const authHeader = req.headers.authorization
-//     if (authHeader && authHeader.startsWith("Bearer ")) {
-//         let token = authHeader.split(" ")[1]
+export const authVerify = async (req, res, next) => {
+    const authHeader = req.headers.authorization
+    if (authHeader && authHeader.startsWith("Bearer  ")) {
+        let token = authHeader.split(" ")[1]
         
-//         try {
-//             const verifyToken = jwt.verify(token, process.env.JWT_SECRET);
-//             let user = await User.findById(verifyToken.id).select("-password")
+        try {
+            const verifyToken = jwt.verify(token, process.env.JWT_SECRET);
+            let user = await User.findById(verifyToken.id).select("-password")
 
-//             req.user = user
-//             next()
+            req.user = user
+            next()
 
-//         } catch (error) {
-//             return res.status(401).send({ message: "token is not valid" })
-//         }
+        } catch (error) {
+            return res.status(401).send({ message: "token is not valid" })
+        }
 
-//     } else {
-//         return res.status(401).send({ message: "unauthorized" })
-//     }
+    } else {
+        return res.status(401).send({ message: "unauthorized" })
+    }
 
-// }
+}

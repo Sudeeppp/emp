@@ -3,6 +3,7 @@ import { config } from 'dotenv';
 import cors from 'cors'
 import dbConnect from './config/dbconfig.js';
 import authRouter from "./routes/authRouter.js";
+import employeeRouter from "./routes/employeeRoutes.js"
 
 config()
 
@@ -18,7 +19,8 @@ app.get('/', (req, res) => {
 })
 
 //routes
-app.use('/api/auth',authRouter)
+app.use('/api/auth', authRouter)
+app.use('/api/employees',employeeRouter)
 
 
 //db connect

@@ -68,9 +68,10 @@ export const getProfile = async (req, res) => {
     try {
         const user = req.user
         res.status(200).json({
-            id: user._id, email: user.email, name: user.name, role: user.role
+            id: user._id, email: user.email, name: user.name, role: user.role, //token:createToken(user._id)
         })
     } catch (error) {
         res.status(500).send({message:"internal server error"})
     }
 }
+
