@@ -35,7 +35,7 @@ import User from "../models/User.js";
 //    }else{
 //     return res.status(401).send({ message: "unauthorized" })
 //     }
-    
+
 // }
 
 // export const authVerify = async (req, res, next) => {
@@ -53,7 +53,7 @@ import User from "../models/User.js";
 
 //    }else{
 //        return res.status(401).send({ message: "unauthorized" })
-       
+
 //     }
 
 // }
@@ -63,7 +63,7 @@ import User from "../models/User.js";
 //     const authHeader = req.headers.authorization
 //     if (authHeader && authHeader.startsWith("Bearer ")) {
 //         let token = authHeader.split(" ")[1]
-        
+
 //         try {
 //             const verifyToken = jwt.verify(token, process.env.JWT_SECRET)
 
@@ -78,15 +78,16 @@ import User from "../models/User.js";
 //         return res.status(401).send({ message: "unauthorized" })
 //     }
 
-        
+
 // }
 
 
 export const authVerify = async (req, res, next) => {
     const authHeader = req.headers.authorization
-    if (authHeader && authHeader.startsWith("Bearer  ")) {
+    // console.log(authHeader)
+    if (authHeader && authHeader.startsWith("Bearer")) {
         let token = authHeader.split(" ")[1]
-        
+
         try {
             const verifyToken = jwt.verify(token, process.env.JWT_SECRET);
             let user = await User.findById(verifyToken.id).select("-password")
