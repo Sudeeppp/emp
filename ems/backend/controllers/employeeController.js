@@ -1,4 +1,3 @@
-import { trusted } from "mongoose"
 import Employee from "../models/Employee.js"
 
 

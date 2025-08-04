@@ -5,6 +5,8 @@ import dbConnect from './config/dbconfig.js';
 import authRouter from "./routes/authRouter.js";
 import employeeRouter from "./routes/employeeRoutes.js";
 import attendanceRouter from "./routes/attendanceRoutes.js";
+import leaveRouter from './routes/leaveRoutes.js'
+import payrollRouter from './routes/payrollRoutes.js'
 
 
 config()
@@ -23,7 +25,9 @@ app.get('/', (req, res) => {
 //routes
 app.use('/api/auth', authRouter)
 app.use('/api/employees', employeeRouter)
-app.use("/api/attendance",attendanceRouter)
+app.use("/api/attendance", attendanceRouter)
+app.use("/api/leave", leaveRouter)
+app.use("/api/payment",payrollRouter)
 
 
 //db connect

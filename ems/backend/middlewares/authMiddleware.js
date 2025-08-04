@@ -104,3 +104,15 @@ export const authVerify = async (req, res, next) => {
     }
 
 }
+
+export const adminVerify = async (req, res, next) => {
+   try {
+    if (req.user.role === "admin") {
+        next()
+    } else {
+        return res.status(401).send({ message: "unauthorized" })
+    }
+   } catch (error) {
+    return res.status(401).send({ message: "unauthorized",error:error.message })
+   }
+}

@@ -4,6 +4,10 @@ import Attendance from "../models/Attendance.js";
 export const checkAttendance = async (req, res) => {
     try {
         const { employee, date, status } = req.body;
+        const exist = await Attendance.findOne({ employee, date })
+        if (exist) {
+            return res.status(200).send({ message: "Attendance already exist" })
+        }
 
         const attendance = await Attendance.create({ employee, date, status })
         res.status(200).json(attendance)
@@ -66,8 +70,12 @@ export const updateAttendance = async (req, res) => {
 export const deleteAttendance = async (req, res) => {
     try {
         const deleted =await Attendance.findByIdAndDelete(req.params.id)
-        res.status(200).json(deleted)
-
+       if (!deleted) {
+            return res.status(404).send({ message: "Attendance not Found" })
+        } else {
+           res.status(200).send({ message: "Attendance deleted successfully" })
+        //    res.status(200).json(deleted)
+        }
     } catch (error) {
         res.status(500).send({ message: "internal server error", error: error.message })
     }
