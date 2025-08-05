@@ -7,6 +7,7 @@ import employeeRouter from "./routes/employeeRoutes.js";
 import attendanceRouter from "./routes/attendanceRoutes.js";
 import leaveRouter from './routes/leaveRoutes.js'
 import payrollRouter from './routes/payrollRoutes.js'
+import announcementRouter from './routes/announcementRoutes.js'
 
 
 config()
@@ -27,7 +28,8 @@ app.use('/api/auth', authRouter)
 app.use('/api/employees', employeeRouter)
 app.use("/api/attendance", attendanceRouter)
 app.use("/api/leave", leaveRouter)
-app.use("/api/payment",payrollRouter)
+app.use("/api/payment", payrollRouter)
+app.use("/api/announcement", announcementRouter)
 
 
 //db connect
